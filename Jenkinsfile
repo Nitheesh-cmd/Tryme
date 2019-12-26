@@ -1,5 +1,6 @@
 pipeline {
     agent any
+     def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
    tools {
         maven 'Maven' 
     }
@@ -12,7 +13,6 @@ pipeline {
             }
         }*/
         stage('Sonar') {
-             def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
             steps {
                 withSonarQubeEnv('Sonar') {
                    sh 'mvn install'
