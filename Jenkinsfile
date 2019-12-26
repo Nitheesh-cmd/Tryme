@@ -1,17 +1,17 @@
 pipeline {
     agent any
     stages {
-        stage('Install') {
+       /* stage('Install') {
             steps {
                 withMaven(maven: 'Maven') {
                  sh "mvn clean test"
                 }                
             }
-        }
+        }*/
         stage('Sonar') {
             steps {
                 withSonarQubeEnv('Sonar') {
-                    echo 'Helo'
+                   sh 'mvn clean package sonar:sonar'
                 }
             }
         }
