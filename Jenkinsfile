@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
           // requires SonarQube Scanner 2.8+
-          sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+          sonarqubeScannerHome = tool name: 'Sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                       }
                 withSonarQubeEnv('Sonar') {
                    sh 'mvn install'
