@@ -1,16 +1,13 @@
 pipeline {
-    def dockerHome = tool 'myDocker'
-    env.PATH = "${dockerHome}/bin:${env.PATH}"
-    agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
+    agent any
+    tools {
+        jdk 'jdk8'
+        maven 'maven3'
     }
     stages {
-        stage('Build') { 
+        stage('Install') {
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                sh "mvn clean test"
             }
         }
     }
