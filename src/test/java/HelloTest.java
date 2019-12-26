@@ -1,6 +1,7 @@
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -47,12 +48,22 @@ public class HelloTest {
     @Test
     public void testIllegalArgumentForHelloTooMuch() {
         Hello hi = new Hello();
-        assertThrows(IllegalArgumentException.class, () -> hi.setTimes(Hello.MAXIMUM_AMOUNT_OF_TIMES + 1));
+        assertThrows(IllegalArgumentException.class, new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                hi.setTimes(Hello.MAXIMUM_AMOUNT_OF_TIMES + 1);
+            }
+        });
     }
 
     @Test
     public void testIllegalArgumentForHelloNegative() {
         Hello hi = new Hello();
-        assertThrows(IllegalArgumentException.class, () -> hi.setTimes(-1));
+        assertThrows(IllegalArgumentException.class, new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                hi.setTimes(-1);
+            }
+        });
     }
 }
