@@ -7,13 +7,13 @@ pipeline {
                  sh "mvn clean test"
                 }                
             }
+        }
          stage('Sonar') {
             steps {
                 withSonarQubeEnv(credentialsId: 'Sonar') {
                     echo 'Hello'
                 }
             }
-          }
         }
     }
 }
