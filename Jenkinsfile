@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Sonar') {
             steps {
-                withSonarQubeEnv(sonar:'Sonar') {
+                withSonarQubeEnv(credentialsId: 'Sonar') {
                     echo 'Helo'
                 }
             }
