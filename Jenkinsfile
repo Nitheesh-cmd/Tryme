@@ -8,12 +8,6 @@ pipeline {
                 }                
             }
         }
-         stage('Sonar') {
-            steps {
-                withSonarQubeEnv(credentialsId: 'Sonar') {
-                    echo 'Hello'
-                }
-            }
         }
     }
 }
