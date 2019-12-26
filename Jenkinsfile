@@ -12,11 +12,11 @@ pipeline {
             }
         }*/
         stage('Sonar') {
-            def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
             steps {
                 withSonarQubeEnv('Sonar') {
                    sh 'mvn install'
                 }
+                def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                 withCredentials([string(credentialsId: 'sonar', variable: 'sonarLogin')]) {
         sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://http://10.204.100.144:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName=gs-gradle -Dsonar.projectVersion=${env.BUILD_NUMBER} -Dsonar.projectKey=GS -Dsonar.sources=src/main/ -Dsonar.tests=src/test/ -Dsonar.language=java -Dsonar.java.binaries=."
                }
